@@ -1,1 +1,260 @@
-# bonnixthegreat-design.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 20th Birthday, Adi ❤️</title>
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('sunflower.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- PLAY BUTTON --- */
+#playButton {
+  position: fixed; top:20px; right:20px;
+  background:#ffd700; color:#000; border:none;
+  padding:12px 20px; border-radius:25px; font-size:1.2rem; cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,0.3); z-index:10000;
+}
+#playButton:hover { background:#ffea00; }
+
+/* HEADER */
+header {
+  background: rgba(255, 223, 0, 0.85); color:#000;
+  padding:1.5rem; font-size:1.8rem; font-weight:bold;
+  position: fixed; top:0; width:100%; text-align:center; z-index:1000;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3); opacity:0; transition: opacity 2s ease;
+}
+
+/* SLIDESHOW */
+.slideshow {
+  position: relative; width:100%; height:100vh; margin-top:70px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; opacity:0; transition: opacity 2s ease;
+}
+.slideshow.show { opacity:1; }
+.slideshow img {
+  position:absolute; max-width:70%; max-height:70%; border-radius:15px;
+  opacity:0; transition: opacity 1.5s ease, transform 6s ease;
+}
+.slideshow img.active { opacity:1; transform: scale(1.05); }
+
+/* QUOTES */
+.quote {
+  position:absolute; bottom:15%; left:50%; transform: translateX(-50%);
+  font-size:1.5rem; color:#fff; background: rgba(0,0,0,0.4);
+  padding:0.5rem 1rem; border-radius:10px; text-align:center;
+  max-width:80%; opacity:0; transition: opacity 1s ease;
+}
+
+/* HEARTS */
+.hearts {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; overflow:hidden; z-index:8; opacity:0; transition: opacity 2s ease;
+}
+.heart {
+  position:absolute; color:#ff3366; font-size:1.2rem; opacity:0.8;
+  animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp {
+  0% {transform:translateY(100vh) scale(0.5); opacity:0;}
+  10% {opacity:1;}
+  100% {transform:translateY(-20vh) scale(1.2); opacity:0;}
+}
+
+/* SPARKLES - NEON BLUE */
+.sparkle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00f0ff 0%, rgba(0,240,255,0) 70%);
+  pointer-events: none;
+  opacity:0.9;
+  animation: sparkleAnim linear infinite;
+  filter: drop-shadow(0 0 5px #00f0ff) drop-shadow(0 0 10px #00f0ff);
+}
+@keyframes sparkleAnim {
+  0% { transform: translateY(100vh) scale(0); opacity: 0;}
+  20% { opacity: 1; }
+  100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+}
+
+/* FINAL MESSAGES */
+#finalMessage {
+  position:fixed; top:40%; left:50%; transform:translate(-50%,-50%);
+  font-size:2rem; color:#000;
+  text-align:center;
+  background: rgba(255,255,255,0.2); padding:2rem; border-radius:20px;
+  max-width:80%; line-height:1.5; z-index:10; opacity:0; transition: opacity 2s ease;
+}
+
+#loveMessage {
+  position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+  font-size:4rem; color:#000;
+  text-align:center;
+  text-shadow: 0 0 5px #000,0 0 10px #000,0 0 20px #000,0 0 40px #000;
+  z-index:10001; opacity:0; transition: opacity 2s ease;
+}
+
+/* FOOTER */
+footer {
+  background: rgba(255,238,128,0.85); padding:1rem; font-size:1.2rem;
+  border-top:2px solid #ffeb3b; position: fixed; bottom:0; width:100%;
+  text-align:center; z-index:1000; opacity:0; transition: opacity 2s ease;
+}
+</style>
+</head>
+<body>
+
+<button id="playButton">🎵 Play Music</button>
+
+<header>💕 Happy 20th Birthday, Adi! 💕<br>From Michael, with all my love</header>
+
+<div class="slideshow">
+  <img src="pic1.jpeg">
+  <img src="pic2.jpeg">
+  <img src="pic3.jpeg">
+  <img src="pic4.jpeg">
+  <img src="pic5.jpeg">
+  <img src="pic6.jpeg">
+  <img src="pic7.jpeg">
+  <img src="pic8.jpeg">
+  <img src="pic9.jpeg">
+  <img src="pic10.jpeg">
+</div>
+
+<div class="quote" id="quote"></div>
+<div class="hearts" id="heartsContainer"></div>
+
+<div id="finalMessage">
+Adi, my love, you are the sunshine that brightens every corner of my world 🌻.<br>
+Every laugh, every smile, every little moment with you makes my heart fuller than I ever imagined.<br>
+On your 20th birthday, I want you to know how much you mean to me ❤️.<br>
+Happy Birthday, my Adi! I’ll always be here, through every laugh, every hug, and even every tiny fight we face. You are my heart, my home, my everything. Thank you for being my sunshine, my joy, and my love. 🌻❤️
+</div>
+
+<div id="loveMessage">I LOVE YOU 3000 ❤️</div>
+
+<audio id="bgMusic" loop playsinline>
+  <source src="flyme.mp3" type="audio/mpeg">
+</audio>
+
+<footer>“Even after our fights, I’ll always spin back to you. Happy 20th, my Adi. ❤️”</footer>
+
+<script>
+const playButton = document.getElementById('playButton');
+const music = document.getElementById('bgMusic');
+const images = document.querySelectorAll('.slideshow img');
+const quoteDiv = document.getElementById('quote');
+const finalMessage = document.getElementById('finalMessage');
+const loveMessage = document.getElementById('loveMessage');
+const heartsContainer = document.getElementById('heartsContainer');
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+
+const quotes = [
+  "Every moment with you is my favorite.",
+  "You make even ordinary days extraordinary.",
+  "Your smile lights up my world.",
+  "I love the way we laugh together, even after our fights.",
+  "With you, every memory becomes a treasure.",
+  "You are my sunshine on cloudy days.",
+  "Every day with you is a new adventure.",
+  "I fall in love with you a little more every day.",
+  "You are my home, my heart, my Adi."
+];
+
+let index = 0;
+let sparkleInterval;
+
+playButton.addEventListener('click', ()=>{
+  music.volume = 0;
+  music.play().catch(()=>console.warn("Tap to play music!"));
+  let vol=0;
+  let fadeIn = setInterval(()=>{
+    vol+=0.05;
+    if(vol>=1){vol=1; clearInterval(fadeIn);}
+    music.volume=vol;
+  },200);
+
+  playButton.style.display='none';
+  header.style.opacity=1;
+  document.querySelector('.slideshow').classList.add('show');
+  quoteDiv.style.opacity=1;
+  heartsContainer.style.opacity=1;
+  footer.style.opacity=1;
+  startSparkles();
+  startSlideshow();
+});
+
+function showSlide(i){
+  if(!images[i]) return;
+  images.forEach(img=> img.classList.remove('active'));
+  images[i].classList.add('active');
+  quoteDiv.style.opacity=0;
+  if(i<quotes.length){
+    setTimeout(()=>{ quoteDiv.textContent=quotes[i]; quoteDiv.style.opacity=1; },1000);
+  }
+}
+
+function startSlideshow(){
+  showSlide(0);
+  let slideInterval = setInterval(()=>{
+    index++;
+    if(index>=images.length){
+      images.forEach(img=> img.classList.remove('active'));
+      quoteDiv.style.opacity=0;
+      spawnHearts();
+
+      setTimeout(()=>{
+        finalMessage.style.opacity=1; // show final message
+      }, 1000); 
+
+      // Keep final message visible for 10s before showing I LOVE YOU 3000
+      setTimeout(()=>{
+        finalMessage.style.opacity=0;
+        loveMessage.style.opacity=1;
+
+        let fadeOutVol = 1;
+        let fadeOut = setInterval(()=>{
+          fadeOutVol -=0.05;
+          if(fadeOutVol <=0){ fadeOutVol=0; music.pause(); clearInterval(fadeOut);}
+          music.volume=fadeOutVol;
+        },200);
+
+        clearInterval(sparkleInterval);
+      }, 11000);
+
+      clearInterval(slideInterval);
+    } else { showSlide(index); }
+  },6000);
+}
+
+function spawnHearts(){
+  for(let i=0;i<30;i++){
+    let h=document.createElement('div');
+    h.className='heart';
+    h.style.left=Math.random()*100+'vw';
+    h.style.fontSize=(Math.random()*1.5+1)+'rem';
+    heartsContainer.appendChild(h);
+  }
+}
+
+function startSparkles(){
+  sparkleInterval = setInterval(()=>{
+    let s = document.createElement('div');
+    s.className='sparkle';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.width = s.style.height = (Math.random()*5+3)+'px';
+    s.style.animationDuration = (Math.random()*3+2)+'s';
+    document.body.appendChild(s);
+    setTimeout(()=>{ s.remove(); }, 5000);
+  }, 300);
+}
+</script>
+</body>
+</html>
